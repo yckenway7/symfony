@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Auteurs</title>
+    <link rel="stylesheet" href="/path/to/your/styles.css"> 
+</head>
+<body>
+    <header>
+        <h1>Liste des Auteurs</h1>
+    </header>
+    <main>
+        {% if authors is empty %}
+            <p>Aucun auteur disponible.</p>
+        {% else %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Photo</th>
+                        <th>Nom d'utilisateur</th>
+                        <th>Email</th>
+                        <th>Nombre de livres</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for author in authors %}
+                        <tr>
+                            <td>{{ author.id }}</td>
+                            <td>
+                                <img src="{{ asset(author.picture) }}" alt="{{ author.username }}" width="100" height="100">
+                            </td>
+                            <td>{{ author.username | upper}}</td>
+                            <td>{{ author.email }}</td>
+                            <td>{{ author.nb_books }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </main>
+
+</body>
+</html>
